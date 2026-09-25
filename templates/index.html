@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>VibeCheck</title>
+</head>
+<body>
+    <div class="container">
+        <h1>VibeCheck</h1>
+        <p>What's your vibe today?</p>
+
+        <form method="POST">
+            <fieldset {% if locked %}disabled{% endif %}>
+                <legend>Choose one mood</legend>
+                {% for mood, emoji in [("Happy", "😊"), ("Okay", "🙂"), ("Tired", "😴"), ("Stressed", "😤"), ("Excited", "🤩")] %}
+                    <label class="mood-option">
+                        <input type="radio" name="mood" value="{{ mood }}"
+                               {% if selected_mood == mood %}checked{% endif %} required>
+                        <span>{{ emoji }} {{ mood }}</span>
+                    </label>
+                {% endfor %}
+            </fieldset>
+
+            {% if locked %}
+                <button type="submit" name="action" value="change">Change mood</button>
+            {% else %}
+                <button type="submit" name="action" value="submit">Submit</button>
+            {% endif %}
+        </form>
+
+        {% if message %}
+            <div class="result" aria-live="polite">
+                <h2>Your Vibe</h2>
+                <p>{{ message }}</p>
+                <h6>Your choice is locked. Select “Change mood” to choose again.</h6>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>VibeCheck Stats</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📊 VibeCheck Stats</h1>
+
+        <h2>👥 Total Visits</h2>
+        <p>{{ stats["visits"] }}</p>
+
+        <h2>😊 Happy</h2>
+        <p>{{ stats["happy"] }}</p>
+
+        <h2>🙂 Okay</h2>
+        <p>{{ stats["okay"] }}</p>
+
+        <h2>😴 Tired</h2>
+        <p>{{ stats["tired"] }}</p>
+
+        <h2>😤 Stressed</h2>
+        <p>{{ stats["stressed"] }}</p>
+
+        <h2>🤩 Excited</h2>
+        <p>{{ stats["excited"] }}</p>
+
+        <br>
+
+        <a href="/">← Back to VibeCheck</a>
+
+    </div>
+
+</body>
+
+</html>
